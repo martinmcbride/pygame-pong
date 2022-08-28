@@ -6,8 +6,6 @@
 import pygame as pg
 from sprites import Ball, Bat
 
-# Setup game
-
 class Game:
     pass
 
@@ -24,13 +22,20 @@ pg.init()
 # Set display size
 screen = pg.display.set_mode((game.screen_width, game.screen_height))
 
+# Create rectangles at boundaries of the screen
+
+game.left = pg.Rect(-100, 0, 100, game.screen_height)
+game.right = pg.Rect(game.screen_width, 0, 100, game.screen_height)
+game.top = pg.Rect(0, -100, game.screen_width, 100)
+game.bottom = pg.Rect(0, game.screen_height, game.screen_width, 100)
+
 # Set window title
 pg.display.set_caption('Pong')
 
 # Create sprites
 
-ball_sprite = Ball((100, 200))
-bat_sprite = Bat((200, 400))
+ball_sprite = Ball((100, 200), game)
+bat_sprite = Bat((200, 400), game)
 all_sprites = pg.sprite.RenderPlain()
 all_sprites.add(ball_sprite)
 all_sprites.add(bat_sprite)
@@ -38,6 +43,9 @@ all_sprites.add(bat_sprite)
 # Game loop
 
 running = True
+
+# Start the clock
+clock = pg.time.Clock()
 
 while running:
 
@@ -48,6 +56,8 @@ while running:
         if event.type == pg.QUIT:
             running = False
 
+    delta_time = clock.tick(60)
     screen.fill((0, 0, 0))
+    all_sprites.update(delta_time)
     all_sprites.draw(screen)
     pg.display.flip()

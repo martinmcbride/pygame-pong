@@ -5,16 +5,21 @@
 
 import pygame as pg
 
+class Game:
+    pass
+
+game = Game()
+
 # Setup game
 
-screen_width = 640
-screen_height = 480
+game.screen_width = 640
+game.screen_height = 480
 
 # Initialise pygame
 pg.init()
 
 # Set display size
-pg.display.set_mode((screen_width, screen_height))
+pg.display.set_mode((game.screen_width, game.screen_height))
 
 # Set window title
 pg.display.set_caption('Pong')
