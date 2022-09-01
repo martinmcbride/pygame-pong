@@ -34,11 +34,11 @@ pg.display.set_caption('Pong')
 
 # Create sprites
 
-ball_sprite = Ball((100, 200), game)
-bat_sprite = Bat((200, 400), game)
-all_sprites = pg.sprite.RenderPlain()
-all_sprites.add(ball_sprite)
-all_sprites.add(bat_sprite)
+game.ball_sprite = Ball((100, 200), game)
+game.bat_sprite = Bat((200, 400), game)
+game.all_sprites = pg.sprite.RenderPlain()
+game.all_sprites.add(game.ball_sprite)
+game.all_sprites.add(game.bat_sprite)
 
 # Game loop
 
@@ -58,6 +58,6 @@ while running:
 
     delta_time = clock.tick(60)
     screen.fill((0, 0, 0))
-    all_sprites.update(delta_time)
-    all_sprites.draw(screen)
+    game.all_sprites.update(delta_time)
+    game.all_sprites.draw(screen)
     pg.display.flip()
