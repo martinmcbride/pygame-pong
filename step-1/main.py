@@ -8,11 +8,6 @@ from sprites import Ball, Bat
 
 # Setup game
 
-class Game:
-    pass
-
-# Setup game
-
 screen_width = 640
 screen_height = 480
 
