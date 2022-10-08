@@ -3,11 +3,23 @@
 # Copyright (c) 2022, Martin McBride
 # License: MIT
 
+from dataclasses import dataclass
+
 import pygame as pg
 from sprites import Ball, Bat
 
+@dataclass
 class Game:
-    pass
+    screen_width = None
+    screen_height = None
+    left = None
+    right = None
+    top = None
+    bottom = None
+    ball_sprite = None
+    bat_sprite = None
+    all_sprites = None
+    running = None
 
 game = Game()
 
@@ -42,19 +54,19 @@ game.all_sprites.add(game.bat_sprite)
 
 # Game loop
 
-running = True
+game.running = True
 
 # Start the clock
 clock = pg.time.Clock()
 
-while running:
+while game.running:
 
     # Check all events in queue
     for event in pg.event.get():
 
         # If a quit event occurs, reset running flag
         if event.type == pg.QUIT:
-            running = False
+            game.running = False
 
     delta_time = clock.tick(60)
     screen.fill((0, 0, 0))
