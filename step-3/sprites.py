@@ -18,8 +18,6 @@ class Ball(pg.sprite.Sprite):
 
     def update(self, delta_time):
         self.rect.center += self.direction * self.speed * delta_time
-        screen_size = pg.display.get_window_size()
-        sprite_size = self.image.get_size()
         if self.rect.colliderect(self.game.left):
             self.direction[0] = 1
         if self.rect.colliderect(self.game.right):
